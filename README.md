@@ -1,4 +1,4 @@
-# lab-request-workflow-bot
+Lab-Request-Workflow-Bot
 A chatbot-based request system for labs using N8n workflow automation, integrated with Google Sheets and Gmail for tracking and notifications to supervisors.
 This project automates the process of collecting lab agent requests through a chatbot interface. The chatbot is deployed on Hugging Face or Tidio and connected to an N8n automation workflow that stores data in a Google Sheet and sends email alerts.
 
@@ -31,6 +31,8 @@ Workflow
 3. Data is cleaned and fields are converted
 4. Request is added to Google Sheet
 5. Email is sent to the lab manager or supervisor.
+
+Note: This chatbot does not use any LLM (Large Language Model). It's rule-based and workflow-driven only.
 
 Here is what the chatbot looks like:
 (2nd chatbot.png) and (chatbot ss.png) 
