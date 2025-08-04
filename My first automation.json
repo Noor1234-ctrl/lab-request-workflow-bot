@@ -1,0 +1,262 @@
+{
+  "name": "My first automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "form-entry",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b18d5a74-edf9-4683-8ec3-237ec343948d",
+      "name": "Webhook",
+      "webhookId": "81b83eff-3bbf-4047-bc8a-cb95810e26c4"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1QDRDmYtA22nIU8cGqLLyJCYPJA9x400ol9ZFmJBvPJI",
+          "mode": "list",
+          "cachedResultName": "Lab reagent requests agent",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QDRDmYtA22nIU8cGqLLyJCYPJA9x400ol9ZFmJBvPJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QDRDmYtA22nIU8cGqLLyJCYPJA9x400ol9ZFmJBvPJI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Your Name?": "= {{ $json[\"Your Name?\"] }}",
+            "What do you need?": "= {{ $json[\"What do you need?\"] }}",
+            "Quantity?": "={{ $json[\"Quantity?\"] }}",
+            "Urgency level": "= {{ $json[\"Urgency level\"] }}",
+            "Additional questions or notes": "= {{ $json[\"Additional questions or notes\"] }}",
+            "Timestamp": "={{ $json.Timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Your Name?",
+              "displayName": "Your Name?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "What do you need?",
+              "displayName": "What do you need?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quantity?",
+              "displayName": "Quantity?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Urgency level",
+              "displayName": "Urgency level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Additional questions or notes",
+              "displayName": "Additional questions or notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        440,
+        0
+      ],
+      "id": "58435708-34e1-4bb4-a971-fe85328d94e9",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "8qq4LY9qDPdSukcw",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e73ea62c-1ef9-4f1b-8049-67407abd639c",
+              "name": "=Your Name?",
+              "value": "={{ $json.body[\"Your Name?\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "2e34893e-55b8-4d30-9fda-c5b6f79fcc14",
+              "name": "=What do you need?",
+              "value": "={{ $json.body[\"What do you need?\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "0922058c-5acd-4f85-a072-f2a1c17ebb59",
+              "name": "=Quantity?",
+              "value": "={{ $json.body[\"Quantity?\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "5265c34b-a3e2-4478-9d02-648240563858",
+              "name": "=Urgency level",
+              "value": "={{ $json.body[\"Urgency level\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "4304e5b4-de5f-45c5-b6ca-d23ef509ccad",
+              "name": "=Additional questions or notes",
+              "value": "={{ $json.body[\"Additional questions or notes\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "653446f7-a283-404a-9ba8-ab7c136bb92b",
+              "name": "=Timestamp\n",
+              "value": "={{ $now }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "a7f48c9f-db5f-45cf-9f05-c9e09a1a1898",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "sendTo": "zoidmarketing75@gmail.com",
+        "subject": "New Lab Supply Request Received",
+        "emailType": "text",
+        "message": "=Hello,  \n\nA new lab supply request has been submitted:\nName: {{ $json[\"Your Name?\"] }}\nItem: {{ $json[\"What do you need?\"] }}\nQuantity: {{ $json[\"Quantity?\"] }}\nUrgency level: {{ $json[\"Urgency level\"] }}\n\nRegards,   \nLab Automation Bot",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        0
+      ],
+      "id": "129123f7-6c38-4560-be7f-e8fd6971fc7d",
+      "name": "Send a message",
+      "webhookId": "6bd80de3-b341-49ee-8789-f2102da1a302",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "dlv968RhFPspjn5U",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Edit Fields": [
+      {
+        "json": {
+          "Your Name?": "Noor Ul Ain",
+          "What do you need?": "DMSO",
+          "Quantity?": "10ml",
+          "Urgency level": "High",
+          "Additional questions or notes": "Please confirm availability before Friday.",
+          "Timestamp": "2025-07-08T00:46:30.162-04:00"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "42a81d15-b16a-4d76-a705-55ad51b77a15",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0c916a928a4fff955d08856ee0f1f5643975853c270fa842ea61f44e84ff7a32"
+  },
+  "id": "7RZ0t5XitxCLBsAK",
+  "tags": []
+}
