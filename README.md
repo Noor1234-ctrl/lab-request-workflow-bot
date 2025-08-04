@@ -32,3 +32,9 @@ Workflow
 4. Request is added to Google Sheet
 5. Email is sent to the lab manager or supervisor.
 
+Here is what the chatbot looks like:
+(2nd chatbot.png) and (chatbot ss.png) 
+
+Chat with my chatbot here on huggingface:
+https://noor123456-my-first-chatbot.hf.space/
+
